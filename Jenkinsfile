@@ -10,7 +10,10 @@ pipeline {
                  description: 'THIS IS RELEASE PACKAGE')
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
-                 description: 'Run the STAGE1')				
+                 description: 'Run the STAGE1')
+    choice(name: 'choices',
+	         choices: ['or-large-1', 'or-small', 'or-medium', 'or-x-large'],
+           description: 'these are choices')				
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
