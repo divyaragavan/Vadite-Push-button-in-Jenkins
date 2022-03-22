@@ -5,9 +5,16 @@ testParams = [:]
 pipeline {
   agent none
   parameters {
+	activeChoiceParam('RUN_STAGE01') {
+		description('Select testbed you wan to run')
+		choiceType('SINGLE_SELECT')
+		groovyScript {
+			script('return ['large', 'small', 'medium', 'x-large']')
+			fallbackScript('"fallback choice"')
+		}  
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
-                 description: 'THIS IS RELEASE PACKAGE')
+                 description: 'THIS IS RELEASE PACKAGE')  
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
@@ -26,8 +33,8 @@ pipeline {
           }
 		   parameters{
 		     choice(name: 'OR-Testbeds',
-	                   choices: ['or-large-1', 'or-small', 'or-medium', 'or-x-large'],
-                           description: 'these are choices')
+	                choices: ['or-large-1', 'or-small', 'or-medium', 'or-x-large'],
+                    description: 'these are choices')
 		   }
           steps {
             script {
