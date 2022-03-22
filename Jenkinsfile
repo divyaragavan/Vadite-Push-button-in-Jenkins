@@ -11,8 +11,6 @@ pipeline {
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
                  description: 'Run the STAGE1')
-    choiceParam(name: 'choice1',
-                 description: 'choices')	
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
