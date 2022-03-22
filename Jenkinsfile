@@ -12,8 +12,8 @@ pipeline {
                  defaultValue: false,
                  description: 'Run the STAGE1')
     choice(name: 'choices',
-	            choices: ['or-large-1', 'or-small', 'or-medium', 'or-x-large']
-                description: 'these are choices')				
+	       choices: ['or-large-1', 'or-small', 'or-medium', 'or-x-large']
+           description: 'these are choices')				
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
@@ -36,6 +36,6 @@ pipeline {
         }
       }
     }
-      }
+  }
 }
 
