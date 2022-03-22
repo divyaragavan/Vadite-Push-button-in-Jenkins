@@ -17,14 +17,14 @@ pipeline {
                  defaultValue: false,
                  description: 'Run the STAGE1')
     separator(name: "MCP_Upgrade", sectionHeader: "Downstream Jobs - MCP Upgrade")
-    booleanParam(name: 'RUN_MCP_UPGRADE',
+    booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
-                 description: 'Run the MCP upgrade test stage')
+                 description: 'RUN_STAGE2')
     separator(name: "LAST_AUTOMATION", sectionHeader: "Downstream Jobs - Team LAST Automation - Stages and Parameters")
     //Ordered alphabetically - OLT specific at top
-    booleanParam(name: 'RUN_SDX6010_REGRESSION',
+    booleanParam(name: 'RUN_STAGE3',
                  defaultValue: false,
-                 description: 'Run regression on SDX 6010')
+                 description: 'Run STAGE3')
   }
 
   options {
@@ -46,51 +46,5 @@ pipeline {
         }
       }
     }
-    stage('Analysis - CI Pipeline Stages') {
-      agent { label 'common_builder' }
-      when {
-        beforeAgent true
-        not { expression { SKIP_PIPELINE } }
-        not { expression { params.FAST_PUBLISH } }
       }
-      steps {
-        sshagent(['github.adtran.com-SSH']) {
-          withCredentials([string(credentialsId: 'github-api-token', variable: 'GITHUB_TOKEN')]) {
-            sh 'make build-all'
-          }
-        }
-        dir('analysis') {
-          sh 'tar -zxvf ../$(make -sC .. bundle-filename)'
-          script {
-          echo "Inside script"           
-            }
-          }
-        }
-      }
-    }
-    stage('CI Pipeline Tests') {
-      when {
-        beforeAgent true
-        not { expression { SKIP_PIPELINE } }
-        not { expression { params.FAST_PUBLISH } }
-      }
-      parallel {
-        //CI pipeline: Regularly executed test suites (alphabetical - OLT specific at top)       
-        stage('Test Leaf Spine Onboarding') {
-          when {
-            expression { params.RUN_LEAF_SPINE_ONBOARDING == true }
-          }
-          environment {
-            OS_PROJECT_NAME = "${testParams['APPLICATION']['leaf-spine-onboarding']['OS_PROJECT_NAME']}"
-            OS_PROJECT_ID = "${testParams['APPLICATION']['leaf-spine-onboarding']['OS_PROJECT_ID']}"
-          }
-          steps {
-            script {
-              runTestLeafSpineOnboarding('leaf-spine-onboarding')
-            }
-          }
-        }
-        }
-    }
-  }
 }
