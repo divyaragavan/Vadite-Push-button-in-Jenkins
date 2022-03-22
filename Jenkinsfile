@@ -7,10 +7,7 @@ pipeline {
   parameters {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
-                 description: 'Enables publishing to artifactory when enabled')
-    booleanParam(name: 'FAST_PUBLISH',
-                 defaultValue: env.BRANCH_NAME == "master",
-                 description: 'Skips analysis and testing when asserted')
+                 description: 'THIS IS RELEASE PACKAGE')
     separator(name: "CI_PIPELINE", sectionHeader: "CI Pipeline: Regularly executed test stages")
     //Ordered alphabetically - OLT specific at top
     booleanParam(name: 'RUN_STAGE1',
