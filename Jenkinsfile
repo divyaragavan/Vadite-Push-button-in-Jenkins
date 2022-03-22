@@ -10,12 +10,7 @@ pipeline {
                  description: 'THIS IS RELEASE PACKAGE')
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
-				 description: 'Run the STAGE1'
-				 parameters{
-				     choice(name: 'OR-Testbeds',
-	                 choices: ['or-large-1', 'or-small', 'or-medium', 'or-x-large']
-                     description: 'these are choices')
-				 })				
+		 description: 'Run the STAGE1')				
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
@@ -25,19 +20,21 @@ pipeline {
   }
 
   stages {
-    stage('RUN_STAGE1') {
-      when {
-        beforeAgent true
-        changeRequest()
-        expression { isIndexingRebuild() }
-      }
-      steps {
-        script {
-          currentBuild.result = currentBuild.previousBuild.result
-          SKIP_PIPELINE = true
+        stage('RUN_STAGE1') {
+          when {
+            expression { params.RUN_LEAF_SPINE_ONBOARDING == true }
+          }
+		   parameters{
+		     choice(name: 'OR-Testbeds',
+	         choices: ['or-large-1', 'or-small', 'or-medium', 'or-x-large']
+             description: 'these are choices')
+		   }
+          steps {
+            script {
+              echo "Hi STAGE-1"
+            }
+          }
         }
-      }
-    }
       }
 }
 
