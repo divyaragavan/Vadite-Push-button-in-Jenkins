@@ -7,7 +7,8 @@ pipeline {
   parameters {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
-                 description: 'THIS IS RELEASE PACKAGE')  
+                 description: 'THIS IS RELEASE PACKAGE')
+    choice(name: 'STAGE_ONBOARDING', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                 
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
@@ -20,24 +21,15 @@ pipeline {
   }
 
   stages {
-        stage('RUN_STAGE1') {
+        stage('stage1') {
           when {
-            expression { params.RUN_LEAF_SPINE_ONBOARDING == true }
+            expression { params.RUN_STAGE01 == true }
           }
           steps {
             script {
               echo "Hi STAGE-1"
-			  activeChoiceParam('RUN_STAGE01') {
-		           description('Select testbed you wan to run')
-		           choiceType('SINGLE_SELECT')
-		           groovyScript {
-			                    script('return ['web-service', 'proxy-service', 'backend-service']')
-			                    fallbackScript('"fallback choice"')
-		                        }  
-		          }
             }
           }
         }
       }
 }
-
