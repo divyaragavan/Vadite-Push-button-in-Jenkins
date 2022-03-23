@@ -25,6 +25,5 @@ pipeline {
                  defaultValue: false,
                  description: 'Run STAGE3')
   }
-
+ }
 }
-
