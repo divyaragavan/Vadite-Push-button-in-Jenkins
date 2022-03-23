@@ -15,7 +15,7 @@ pipeline {
 		description('Select testbed you wan to run')
 		choiceType('SINGLE_SELECT')
 		groovyScript {
-			script('return ['web-service', 'proxy-service', 'backend-service']')
+			script('''return ['web-service', 'proxy-service', 'backend-service']''')
 			fallbackScript('"fallback choice"')
 		}}              
     choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed', checkboxTrigger: 'STAGE_ONBOARDING')                 
