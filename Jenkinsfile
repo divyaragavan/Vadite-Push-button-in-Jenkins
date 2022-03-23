@@ -8,11 +8,9 @@ pipeline {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
                  description: 'THIS IS RELEASE PACKAGE')
-    booleanParam(name: 'STAGE_ONBOARDING',
-                 defaultValue: true,
-                 description: 'THIS IS STAGE_ONBOARDING')
 	activeChoiceParam('STAGE_ONBOARDING') {
 		description('Select testbed you wan to run')
+        filterable()
 		choiceType('SINGLE_SELECT')
 		groovyScript {
 			script('''return ['web-service', 'proxy-service', 'backend-service']''')
