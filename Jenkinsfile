@@ -8,10 +8,10 @@ pipeline {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
                  description: 'THIS IS RELEASE PACKAGE')
-    booleanParam(name: 'STAGE_ONBOARDING',
+    [booleanParam(name: 'STAGE_ONBOARDING',
                  defaultValue: true,
-                 description: 'THIS IS STAGE_ONBOARDING')                 
-    choice(name: 'OR_PODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                 
+                 description: 'THIS IS STAGE_ONBOARDING')  ,               
+    choice(name: 'OR_PODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')]              
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
