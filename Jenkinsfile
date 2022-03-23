@@ -7,7 +7,14 @@ pipeline {
   parameters {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
-                 description: 'THIS IS RELEASE PACKAGE')  
+                 description: 'THIS IS RELEASE PACKAGE')
+    activeChoiceParam(name: 'RUN_STAGE01',
+	             description: 'Select testbed you wan to run',
+		     choiceType: 'SINGLE_SELECT',
+		     groovyScript {
+			           script('''return ['web-service', 'proxy-service', 'backend-service']''')
+			           fallbackScript('"fallback choice"')
+		                   } )				 
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
@@ -20,14 +27,8 @@ pipeline {
   }
   stages {
         stage('stage1') {
-		 activeChoiceParam('RUN_STAGE01') {
-		       description('Select testbed you wan to run')
-		       choiceType('SINGLE_SELECT')
-		       groovyScript {
-				    script('''return ['web-service', 'proxy-service', 'backend-service']''')
-			            fallbackScript('"fallback choice"')
-		                    }  
-		                 }
+
+		    }
           when {
             expression { params.RUN_STAGE01 == true }
           }
@@ -37,5 +38,4 @@ pipeline {
             }
           }
         }
-      }
  }
