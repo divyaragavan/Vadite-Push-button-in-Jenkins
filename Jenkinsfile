@@ -10,10 +10,10 @@ pipeline {
 		choiceType('SINGLE_SELECT')
 		groovyScript {
 			script('return [
-                   'web-service',
-                   'proxy-service',
-                   'backend-service'
-                    ]')
+                               'web-service',
+                               'proxy-service',
+                               'backend-service'
+                                ]')
 			fallbackScript('"fallback choice"')
 		}  
     booleanParam(name: 'RELEASE_PACKAGE',
