@@ -2,20 +2,43 @@
 
 testParams = [:]
 
+properties([
+    parameters([
+        choice(
+            name: 'ENV',
+            choices: [
+                'dev',
+                'prod'
+            ]
+        ),
+        [$class: 'ChoiceParameter',
+            choiceType: 'PT_RADIO',
+            filterLength: 1,
+            filterable: false,
+            name: 'CHOICES',
+            script: [
+                $class: 'GroovyScript',
+                fallbackScript: [
+                    classpath: [],
+                    sandbox: false,
+                    script: 'return ["Check Jenkins ScriptApproval page"]'
+                ],
+                script: [
+                    classpath: [],
+                    sandbox: false,
+                    script: 'return ["One","Two:selected"]'
+                ]
+            ]
+        ]
+    ])
+])
+
 pipeline {
   agent none
   parameters {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
-                 description: 'THIS IS RELEASE PACKAGE')
-	activeChoiceParam('STAGE_ONBOARDING') {
-		description('Select testbed you wan to run')
-        filterable()
-		choiceType('SINGLE_SELECT')
-		groovyScript {
-			script('''return ['web-service', 'proxy-service', 'backend-service']''')
-			fallbackScript('"fallback choice"')
-		}}              
+                 description: 'THIS IS RELEASE PACKAGE')            
     choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                 
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
