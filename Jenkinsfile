@@ -12,6 +12,7 @@ pipeline {
 			script('''return ['web-service', 'proxy-service', 'backend-service']''')
 			fallbackScript('"fallback choice"')
 		}  
+		}
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
                  description: 'THIS IS RELEASE PACKAGE')  
@@ -26,4 +27,3 @@ pipeline {
                  description: 'Run STAGE3')
   }
  }
-}
