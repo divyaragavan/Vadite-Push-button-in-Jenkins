@@ -10,7 +10,8 @@ pipeline {
                  description: 'THIS IS RELEASE PACKAGE')
     booleanParam(name: 'STAGE_ONBOARDING',
                  defaultValue: true,
-                 description: 'THIS IS STAGE_ONBOARDING')                     
+                 description: 'THIS IS STAGE_ONBOARDING')                 
+    choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed', checkboxTrigger: 'STAGE_ONBOARDING')                 
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
@@ -23,12 +24,14 @@ pipeline {
   }
 
   stages {
-        stage('STAGE_ONBOARDING') {
+        stage('stage1') {
           when {
             expression { params.STAGE_ONBOARDING == true }
           }
           steps {
-            parameters(choice(name: 'OR_PODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed'))
+            script {
+              echo "Hi STAGE-1"
+            }
           }
         }
       }
