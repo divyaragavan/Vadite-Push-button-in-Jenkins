@@ -11,7 +11,7 @@ pipeline {
     booleanParam(name: 'STAGE_ONBOARDING',
                  defaultValue: true,
                  description: 'THIS IS STAGE_ONBOARDING')                 
-    choice(choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                 
+    choice(name: 'OR_PODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                 
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
