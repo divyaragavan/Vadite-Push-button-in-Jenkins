@@ -18,7 +18,7 @@ pipeline {
 			script('''return ['web-service', 'proxy-service', 'backend-service']''')
 			fallbackScript('"fallback choice"')
 		}}              
-    choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed', checkboxTrigger: 'STAGE_ONBOARDING')                 
+    choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                 
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
