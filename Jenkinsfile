@@ -27,15 +27,10 @@ pipeline {
   }
 
   stages {
-        stage('RUN_STAGE1') {
+        stage('RUN_STAGE01') {
           when {
-            expression { params.RUN_LEAF_SPINE_ONBOARDING == true }
+            expression { params.RUN_STAGE01 == true }
           }
-		   parameters{
-		     choice(name: 'OR-Testbeds',
-	                choices: ['or-large-1', 'or-small', 'or-medium', 'or-x-large'],
-                    description: 'these are choices')
-		   }
           steps {
             script {
               echo "Hi STAGE-1"
