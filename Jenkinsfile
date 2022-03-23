@@ -8,11 +8,11 @@ pipeline {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
                  description: 'THIS IS RELEASE PACKAGE'
-                 parameters:
+                 parameters:(
                     -choice:
                      name: 'ORPODS'
                      choices: ['testbed1', 'tesetbed2']
-                     description: 'Choose testbed' )            
+                     description: 'Choose testbed' ))           
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
