@@ -26,4 +26,16 @@ pipeline {
                  defaultValue: false,
                  description: 'Run STAGE3')
   }
+  stages {
+        stage('stage1') {
+          when {
+            expression { params.RUN_STAGE01 == true }
+          }
+          steps {
+            script {
+              echo "Hi STAGE-1"
+            }
+          }
+        }
+      }
  }
