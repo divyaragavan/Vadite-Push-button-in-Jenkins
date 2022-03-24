@@ -13,8 +13,8 @@ pipeline {
                  defaultValue: false,
 		 description: 'Run the STAGE1')	          
     activeChoiceParam(name: 'run stage onboarding',
-                description: 'Select testbed you wan to run'
-                choiceType: 'SINGLE_SELECT'
+                description: 'Select testbed you wan to run',
+                choiceType: 'SINGLE_SELECT',
                 choices: ['web-service', 'proxy-service', 'backend-service'])       
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
