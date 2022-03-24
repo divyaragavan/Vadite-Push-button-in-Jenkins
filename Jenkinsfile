@@ -11,7 +11,6 @@ pipeline {
                  description: 'THIS IS RELEASE PACKAGE')
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: true,
-                 choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'],
 				 description: 'Run the STAGE1')	 
     choice(name: 'OR-PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'])                 
     booleanParam(name: 'RUN_STAGE2',
