@@ -21,7 +21,7 @@ pipeline {
   }
 
 if (params.RUN_STAGE1 == true) {
-  parameters[choice(name: 'OR-PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'])]
+	parameters{choice(name: 'OR-PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'])}
 } 
 
   stages {
