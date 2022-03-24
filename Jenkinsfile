@@ -15,10 +15,8 @@ pipeline {
     activeChoiceParam(name: 'run stage onboarding',
                 description: 'Select testbed you wan to run'
                 choiceType: 'SINGLE_SELECT'
-                groovyScript {
-                    script('''return ['web-service', 'proxy-service', 'backend-service']''')
-                    fallbackScript('"fallback choice"')
-                )}         
+                script: '''return ['web-service', 'proxy-service', 'backend-service']'''
+                fallbackScript: '"fallback choice"')         
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
