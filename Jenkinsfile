@@ -10,7 +10,7 @@ pipeline {
                  description: 'THIS IS RELEASE PACKAGE')                 
     choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                     
     booleanParam(name: 'RUN_STAGE1',
-                 defaultValue: false,
+                 defaultValue: true,
 				 description: 'Run the STAGE1')	                   
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
@@ -23,14 +23,16 @@ pipeline {
   stages {
         stage('stage1') {
           when {
-            expression { params.STAGE_ONBOARDING == true }
+            expression { params.RUN_STAGE1 == true }
           }
+          input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }}
           steps {
-            parameters{
-              booleanParam(name: 'PACKAGE',
-                           defaultValue: true,
-                           description: 'THIS IS RELEASE PACKAGE')                    
-            }
             script {
               echo "Hi STAGE-1"              
             }
