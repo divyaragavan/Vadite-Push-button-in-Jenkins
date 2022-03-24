@@ -7,12 +7,10 @@ pipeline {
   parameters {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
-                 description: 'THIS IS RELEASE PACKAGE'
-                 parameters:(
-                    -choice:
-                     name: 'ORPODS'
-                     choices: ['testbed1', 'tesetbed2']
-                     description: 'Choose testbed' ))           
+                 description: 'THIS IS RELEASE PACKAGE')
+    choice(name: 'ORPODS',
+          choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4' ]
+          description: 'Choose testbed' )                  
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
 				 description: 'Run the STAGE1')				
