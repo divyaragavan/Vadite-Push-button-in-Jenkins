@@ -26,9 +26,9 @@ pipeline {
           }
           input {
                 message "Select Test Bed you want to choose"
-                ok "Yes, we should."
+                ok "Select"
                 parameters {
-                    choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')
+                    choice(name: 'OR-PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'])
                 }}
           steps {
             script {
