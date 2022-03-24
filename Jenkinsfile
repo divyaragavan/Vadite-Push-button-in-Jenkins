@@ -27,7 +27,9 @@ pipeline {
           }
           steps {
             parameters{
-            choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                     
+              booleanParam(name: 'PACKAGE',
+                           defaultValue: true,
+                           description: 'THIS IS RELEASE PACKAGE')                    
             }
             script {
               echo "Hi STAGE-1"              
