@@ -7,8 +7,7 @@ pipeline {
   parameters {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
-                 description: 'THIS IS RELEASE PACKAGE')                 
-    choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                     
+                 description: 'THIS IS RELEASE PACKAGE')                                         
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: true,
 				 description: 'Run the STAGE1')	                   
@@ -26,11 +25,10 @@ pipeline {
             expression { params.RUN_STAGE1 == true }
           }
           input {
-                message "Should we continue?"
+                message "Select Test Bed you want to choose"
                 ok "Yes, we should."
-                submitter "alice,bob"
                 parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                    choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')
                 }}
           steps {
             script {
