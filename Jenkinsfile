@@ -25,10 +25,10 @@ pipeline {
           when {
             expression { params.STAGE_ONBOARDING == true }
           }
-          parameters{
-          choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                     
-          }
           steps {
+            parameters{
+            choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                     
+            }
             script {
               echo "Hi STAGE-1"              
             }
