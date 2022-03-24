@@ -8,10 +8,11 @@ pipeline {
   parameters {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
-                 description: 'THIS IS RELEASE PACKAGE')                                         
+                 description: 'THIS IS RELEASE PACKAGE') 
+     choice(name: 'OR-PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'],  defaultValue: false,)                 
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: true,
-		 description: 'Run the STAGE1')	                   
+				 description: 'Run the STAGE1')	                   
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
@@ -20,9 +21,6 @@ pipeline {
                  description: 'Run STAGE3')
   }
 
-if (params.RUN_STAGE1 == true) {
-	parameters{choice(name: 'OR-PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'])}
-} 
 
   stages {
         stage('stage1') {
