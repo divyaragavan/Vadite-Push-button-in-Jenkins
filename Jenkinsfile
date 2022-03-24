@@ -9,7 +9,7 @@ pipeline {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
                  description: 'THIS IS RELEASE PACKAGE') 
-     choice(name: 'OR-PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'],  defaultValue: false,)                 
+     choice(name: 'OR-PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'],  defaultValue: false)                 
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: true,
 				 description: 'Run the STAGE1')	                   
