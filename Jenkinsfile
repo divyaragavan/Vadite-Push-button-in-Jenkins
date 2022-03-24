@@ -11,7 +11,7 @@ pipeline {
     choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                     
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
-				 description: 'Run the STAGE1')				
+	         description: 'Run the STAGE1')				
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
