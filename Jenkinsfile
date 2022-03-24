@@ -15,8 +15,7 @@ pipeline {
     activeChoiceParam(name: 'run stage onboarding',
                 description: 'Select testbed you wan to run'
                 choiceType: 'SINGLE_SELECT'
-                script: '''return ['web-service', 'proxy-service', 'backend-service']'''
-                fallbackScript: '"fallback choice"')         
+                choices: ['web-service', 'proxy-service', 'backend-service'])       
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
