@@ -11,11 +11,7 @@ pipeline {
     choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                     
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: false,
-		 description: 'Run the STAGE1')	          
-    activeChoiceParam(name: 'run stage onboarding',
-                description: 'Select testbed you wan to run',
-                choiceType: 'SINGLE_SELECT',
-                choices: ['web-service', 'proxy-service', 'backend-service'])       
+				 description: 'Run the STAGE1')	                   
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
@@ -29,9 +25,12 @@ pipeline {
           when {
             expression { params.STAGE_ONBOARDING == true }
           }
+          parameters{
+          choice(name: 'ORPODS', choices: ['testbed1', 'tesetbed2'], description: 'Choose testbed')                     
+          }
           steps {
             script {
-              echo "Hi STAGE-1"
+              echo "Hi STAGE-1"              
             }
           }
         }
