@@ -4,7 +4,15 @@ testParams = [:]
 
 
 pipeline {
-  agent none
+  agent aa{
+        def deployOptions = 'no\nyes'
+        def userInput = input(
+          id: 'userInput', message: 'Are you prepared to deploy?', parameters: [
+          [$class: 'ChoiceParameterDefinition', choices: deployOptions, description: 'Approve/Disallow deployment', name: 'deploy-check']
+          ]
+        )
+        echo "you selected: ${userInput}"
+    }
   parameters {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
@@ -12,7 +20,7 @@ pipeline {
     booleanParam(name: 'RUN_STAGE1',
                  defaultValue: true,
                  choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'],
-		 description: 'Run the STAGE1')	                 	                   
+				 description: 'Run the STAGE1')	                 	                   
     booleanParam(name: 'RUN_STAGE2',
                  defaultValue: false,
                  description: 'RUN_STAGE2')
