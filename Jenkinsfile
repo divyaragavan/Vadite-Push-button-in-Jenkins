@@ -32,19 +32,20 @@ pipeline {
                 if (params.OR_PODS.contains('testbed1')) 
                 {
                  echo "TESTBED1"
-                }
-                else if (params.OR_PODS.contains('testbed2')) 
+                 
+                }else if (params.OR_PODS.contains('testbed2')) 
                 {
                  echo "TESTBED2"
-                }
-                else if (params.OR_PODS.contains('testbed3')) 
+                 
+                }else if (params.OR_PODS.contains('testbed3')) 
                 {
                  echo "TESTBED3"
-                }                
-                else if (params.OR_PODS.contains('testbed4')) 
+                 
+                }else if (params.OR_PODS.contains('testbed4')) 
                 {
-                 echo "TESTBED4"
-                }                                
+                 echo "TESTBED4"                 
+                }                
+                                
             }
           }
         }
