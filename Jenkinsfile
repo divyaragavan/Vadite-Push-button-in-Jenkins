@@ -2,11 +2,6 @@
 
 testParams = [:]
 
-properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'CHOICES', randomName: 'choice-parameter-89419589178408', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return[\'error\']'], script: [classpath: [], sandbox: false, script: '''return[
-\'aaa\',
-\'bbb\',
-\'ccc\'
-]''']]]])])
 
 pipeline {
   agent none  
@@ -14,7 +9,7 @@ pipeline {
     booleanParam(name: 'RELEASE_PACKAGE',
                  defaultValue: true,
                  description: 'THIS IS RELEASE PACKAGE')
-    booleanParam(name: 'RUN_STAGE1',
+    booleanParam(name: 'STAGE1',
                  defaultValue: true,
 		 description: 'Run the STAGE1')	 
     choice(name: 'OR_PODS', choices: ['testbed1', 'tesetbed2', 'tesetbed3', 'tesetbed4'])                 
@@ -30,11 +25,14 @@ pipeline {
   stages {
         stage('stage1') {
           when {
-            expression { params.OR_PODS == true }
+            expression { params.STAGE1 == true }
           }
           steps {
             script {
-              echo "Hi STAGE-1"              
+                if (params.OR_PODS.contains('testbed1')) 
+                {
+                 echo "TESTBED1"
+                }                
             }
           }
         }
