@@ -29,7 +29,7 @@ pipeline {
           }
           steps {
             script {
-              var = $OR_PODS
+              var = params.OR_PODS.name
               echo "VAR  $var"               
             }
           }
